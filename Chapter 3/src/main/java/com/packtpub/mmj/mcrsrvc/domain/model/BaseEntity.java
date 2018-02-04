@@ -1,16 +1,14 @@
 package com.packtpub.mmj.mcrsrvc.domain.model;
 
 /**
- *
- * @author Sourabh Sharma
  * @param <T>
+ * @author Sourabh Sharma
  */
 public abstract class BaseEntity<T> extends Entity<T> {
 
     private boolean isModified;
 
     /**
-     *
      * @param id
      * @param name
      */
@@ -21,7 +19,6 @@ public abstract class BaseEntity<T> extends Entity<T> {
     }
 
     /**
-     *
      * @return
      */
     public boolean isIsModified() {

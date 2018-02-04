@@ -13,4 +13,12 @@
     </properties>
     <name>4801_chapter3</name>
     <description>Master Microservices with Java, Chapter - 3 Domain Driven Design</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

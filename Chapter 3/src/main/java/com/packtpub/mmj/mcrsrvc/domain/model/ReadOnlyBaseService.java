@@ -1,10 +1,9 @@
 package com.packtpub.mmj.mcrsrvc.domain.model;
 
 /**
- *
- * @author Sourabh Sharma
  * @param <TE>
  * @param <T>
+ * @author Sourabh Sharma
  */
 public abstract class ReadOnlyBaseService<TE, T> {
 

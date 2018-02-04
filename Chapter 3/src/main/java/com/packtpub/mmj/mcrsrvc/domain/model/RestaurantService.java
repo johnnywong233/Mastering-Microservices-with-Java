@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.Collection;
 
 /**
- *
  * @author Sourabh Sharma
  */
 public class RestaurantService extends BaseService<Restaurant, BigInteger> {
@@ -12,7 +11,6 @@ public class RestaurantService extends BaseService<Restaurant, BigInteger> {
     private RestaurantRepository<Restaurant, String> restaurantRepository;
 
     /**
-     *
      * @param repository
      */
     public RestaurantService(RestaurantRepository repository) {
@@ -21,7 +19,6 @@ public class RestaurantService extends BaseService<Restaurant, BigInteger> {
     }
 
     /**
-     *
      * @param restaurant
      * @throws Exception
      */
@@ -38,7 +35,6 @@ public class RestaurantService extends BaseService<Restaurant, BigInteger> {
     }
 
     /**
-     *
      * @return
      */
     @Override

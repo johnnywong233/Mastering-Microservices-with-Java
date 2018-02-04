@@ -1,48 +1,27 @@
 package com.packtpub.mmj.mcrsrvc.domain.model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Sourabh Sharma
  */
+@Data
 public class Restaurant extends BaseEntity<String> {
 
     private List<Table> tables = new ArrayList<>();
 
-    /**
-     *
-     * @param name
-     * @param id
-     * @param tables
-     */
     public Restaurant(String name, String id, List<Table> tables) {
         super(id, name);
         this.tables = tables;
     }
 
     /**
-     *
-     * @param tables
-     */
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<Table> getTables() {
-        return tables;
-    }
-
-    /**
      * Overridden toString() method that return String presentation of the
      * Object
      *
-     * @return
      */
     @Override
     public String toString() {

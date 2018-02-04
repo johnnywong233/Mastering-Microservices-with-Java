@@ -4,13 +4,13 @@ import com.packtpub.mmj.mcrsrvc.domain.model.Restaurant;
 import com.packtpub.mmj.mcrsrvc.domain.model.RestaurantService;
 import com.packtpub.mmj.mcrsrvc.domain.model.Table;
 import com.packtpub.mmj.mcrsrvc.persistence.InMemRestaurantRepository;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 /**
- *
  * @author sousharm
  */
 public class RestaurantApp {
@@ -18,7 +18,6 @@ public class RestaurantApp {
     /**
      * main method of the Application
      *
-     * @param args
      */
     public static void main(String[] args) {
         try {
@@ -29,7 +28,7 @@ public class RestaurantApp {
             Table table1 = new Table("Table 1", BigInteger.ONE, 6);
             Table table2 = new Table("Table 2", BigInteger.valueOf(2), 4);
             Table table3 = new Table("Table 3", BigInteger.valueOf(3), 2);
-            List<Table> tableList = new ArrayList();
+            List<Table> tableList = new ArrayList<>();
             tableList.add(table1);
             tableList.add(table2);
             tableList.add(table3);
@@ -50,9 +49,7 @@ public class RestaurantApp {
 
             // Print the retrieved restaurants on console
             System.out.println("Restaurants List:");
-            restaurants.stream().forEach((restaurant) -> {
-                System.out.println("Restaurant: " + restaurant);
-            });
+            restaurants.forEach((restaurant) -> System.out.println("Restaurant: " + restaurant));
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
             // Exception Handling Code
