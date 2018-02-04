@@ -1,7 +1,6 @@
 package com.packtpub.mmj.restaurant.resources.docker;
 
 /**
- *
  * @author Sourabh Sharma
  */
 public interface DockerIntegrationTest {

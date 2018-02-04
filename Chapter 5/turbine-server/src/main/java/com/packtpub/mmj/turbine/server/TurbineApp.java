@@ -18,15 +18,14 @@ public class TurbineApp {
     @Value("${app.rabbitmq.host:localhost}")
     String rabbitMQHost;
 
+    public static void main(String[] args) {
+        SpringApplication.run(TurbineApp.class, args);
+    }
+
     @Bean
     public ConnectionFactory connectionFactory() {
         //LOG.info("Creating RabbitMQHost ConnectionFactory for host: {}", rabbitMQHost);
 
-        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(rabbitMQHost);
-        return cachingConnectionFactory;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(TurbineApp.class, args);
+        return new CachingConnectionFactory(rabbitMQHost);
     }
 }

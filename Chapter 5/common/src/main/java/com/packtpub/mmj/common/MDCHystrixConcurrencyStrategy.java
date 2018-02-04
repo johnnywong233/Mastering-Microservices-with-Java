@@ -1,6 +1,7 @@
 package com.packtpub.mmj.common;
 
 import com.netflix.hystrix.strategy.concurrency.HystrixConcurrencyStrategy;
+
 import java.util.concurrent.Callable;
 
 public class MDCHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy {

@@ -4,45 +4,37 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packtpub.mmj.restaurant.RestaurantApp;
 import com.packtpub.mmj.restaurant.domain.model.entity.Table;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.*;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.client.RestTemplate;
+
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Spring System test - by using @SpringApplicationConfiguration that picks up
  * same configuration that Spring Boot uses.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = RestaurantApp.class)
-@WebIntegrationTest("server.port=0")
+//@SpringApplicationConfiguration(classes = RestaurantApp.class)
+@SpringBootTest(classes = RestaurantApp.class)
+//@WebIntegrationTest("server.port=0")
+@SuppressWarnings("unchecked")
 public class RestaurantControllerIntegrationTests extends
         AbstractRestaurantControllerTests {
 
-    private final RestTemplate restTemplate = new TestRestTemplate();
     //Required to Generate JSON content from Java objects
-    public static final ObjectMapper objectMapper = new ObjectMapper();
-
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final RestTemplate restTemplate = new RestTemplate();
     @Value("${local.server.port}")
     int port;
 
@@ -123,8 +115,6 @@ public class RestaurantControllerIntegrationTests extends
 
     /**
      * Test the POST /v1/restaurants API
-     *
-     * @throws JsonProcessingException
      */
     @Test
     public void testAdd() throws JsonProcessingException {
@@ -136,15 +126,15 @@ public class RestaurantControllerIntegrationTests extends
         Map<String, Object> table1 = new HashMap<>();
         table1.put("name", "Table 1");
         table1.put("id", BigInteger.ONE);
-        table1.put("capacity", Integer.valueOf(6));
+        table1.put("capacity", 6);
         Map<String, Object> table2 = new HashMap<>();
         table2.put("name", "Table 2");
         table2.put("id", BigInteger.valueOf(2));
-        table2.put("capacity", Integer.valueOf(4));
+        table2.put("capacity", 4);
         Map<String, Object> table3 = new HashMap<>();
         table3.put("name", "Table 3");
         table3.put("id", BigInteger.valueOf(3));
-        table3.put("capacity", Integer.valueOf(2));
+        table3.put("capacity", 2);
         List<Map<String, Object>> tableList = new ArrayList();
         tableList.add(table1);
         tableList.add(table2);
@@ -182,7 +172,7 @@ public class RestaurantControllerIntegrationTests extends
         List<Map<String, Object>> tableList2 = (List<Map<String, Object>>) response.get("tables");
         assertNotNull(tableList2);
         assertEquals(tableList2.size(), 3);
-        tableList2.stream().forEach((table) -> {
+        tableList2.forEach((table) -> {
             assertNotNull(table);
             assertNotNull(table.get("name"));
             assertNotNull(table.get("id"));

@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableHystrixDashboard
 public class DashboardApp extends SpringBootServletInitializer {
 
+    public static void main(String[] args) {
+        SpringApplication.run(DashboardApp.class, args);
+    }
+
     @RequestMapping("/")
     public String home() {
         return "forward:/hystrix";
@@ -21,9 +25,5 @@ public class DashboardApp extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(DashboardApp.class).web(true);
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(DashboardApp.class, args);
     }
 }

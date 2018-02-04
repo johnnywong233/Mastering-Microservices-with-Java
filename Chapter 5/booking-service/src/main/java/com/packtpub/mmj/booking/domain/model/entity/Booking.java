@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- *
  * @author Sourabh Sharma
  */
 public class Booking extends BaseEntity<String> {
@@ -16,87 +15,6 @@ public class Booking extends BaseEntity<String> {
     private String tableId;
 
     /**
-     *
-     * @return
-     */
-    public String getTableId() {
-        return tableId;
-    }
-
-    /**
-     *
-     * @param tableId
-     */
-    public void setTableId(String tableId) {
-        this.tableId = tableId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getRestaurantId() {
-        return restaurantId;
-    }
-
-    /**
-     *
-     * @param restaurantId
-     */
-    public void setRestaurantId(String restaurantId) {
-        this.restaurantId = restaurantId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getUserId() {
-        return userId;
-    }
-
-    /**
-     *
-     * @param userId
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     *
-     * @param date
-     */
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public LocalTime getTime() {
-        return time;
-    }
-
-    /**
-     *
-     * @param time
-     */
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    /**
-     *
      * @param name
      * @param id
      * @param restaurantId
@@ -110,6 +28,76 @@ public class Booking extends BaseEntity<String> {
         this.tableId = tableId;
         this.userId = userId;
         this.date = date;
+        this.time = time;
+    }
+
+    /**
+     * @return
+     */
+    public String getTableId() {
+        return tableId;
+    }
+
+    /**
+     * @param tableId
+     */
+    public void setTableId(String tableId) {
+        this.tableId = tableId;
+    }
+
+    /**
+     * @return
+     */
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    /**
+     * @param restaurantId
+     */
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    /**
+     * @return
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * @param date
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /**
+     * @return
+     */
+    public LocalTime getTime() {
+        return time;
+    }
+
+    /**
+     * @param time
+     */
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 

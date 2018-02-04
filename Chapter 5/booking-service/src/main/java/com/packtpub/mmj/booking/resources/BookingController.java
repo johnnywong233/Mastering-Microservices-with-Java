@@ -4,42 +4,24 @@ import com.packtpub.mmj.booking.domain.model.entity.Booking;
 import com.packtpub.mmj.booking.domain.model.entity.Entity;
 import com.packtpub.mmj.booking.domain.service.BookingService;
 import com.packtpub.mmj.booking.domain.valueobject.BookingVO;
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/v1/booking")
 public class BookingController {
 
-    /**
-     *
-     */
-    protected static final Logger logger = Logger.getLogger(BookingController.class.getName());
+    private static final Logger logger = Logger.getLogger(BookingController.class.getName());
 
-    /**
-     *
-     */
-    protected BookingService bookingService;
+    private BookingService bookingService;
 
-    /**
-     *
-     * @param bookingService
-     */
     @Autowired
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
@@ -50,7 +32,6 @@ public class BookingController {
      * is supported. So <code>http://.../booking/rest</code> will find any
      * bookings with upper or lower case 'rest' in their name.
      *
-     * @param name
      * @return A non-null, non-empty collection of bookings.
      */
     @RequestMapping(method = RequestMethod.GET)
@@ -73,7 +54,7 @@ public class BookingController {
      * <code>http://.../v1/bookings/{id}</code> will return booking with given
      * id.
      *
-     * @param id
+     * @param id id
      * @return A non-null, non-empty collection of bookings.
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -94,7 +75,6 @@ public class BookingController {
     /**
      * Add booking with the specified information.
      *
-     * @param bookingVO
      * @return A non-null booking.
      */
     @RequestMapping(method = RequestMethod.POST)

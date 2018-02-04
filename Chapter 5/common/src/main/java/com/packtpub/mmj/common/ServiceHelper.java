@@ -1,6 +1,5 @@
 package com.packtpub.mmj.common;
 
-import java.net.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import java.net.URI;
+
 @Component
 public class ServiceHelper {
 
@@ -22,22 +19,11 @@ public class ServiceHelper {
     @Autowired
     private LoadBalancerClient loadBalancer;
 
-    /**
-     *
-     * @param serviceId
-     * @return
-     */
     public URI getServiceUrl(String serviceId) {
         return getServiceUrl(serviceId, null);
     }
 
-    /**
-     *
-     * @param serviceId
-     * @param fallbackUri
-     * @return
-     */
-    protected URI getServiceUrl(String serviceId, String fallbackUri) {
+    private URI getServiceUrl(String serviceId, String fallbackUri) {
         URI uri = null;
         try {
             ServiceInstance instance = loadBalancer.choose(serviceId);
@@ -68,7 +54,7 @@ public class ServiceHelper {
         return createResponse(body, HttpStatus.OK);
     }
 
-    public <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
+    private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
         return new ResponseEntity<>(body, httpStatus);
     }
 }

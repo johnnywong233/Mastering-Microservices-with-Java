@@ -1,9 +1,8 @@
 package com.packtpub.mmj.user.domain.model.entity;
 
 /**
- *
- * @author Sourabh Sharma
  * @param <T>
+ * @author Sourabh Sharma
  */
 public abstract class Entity<T> {
 
@@ -11,7 +10,6 @@ public abstract class Entity<T> {
     String name;
 
     /**
-     *
      * @return
      */
     public T getId() {
@@ -19,7 +17,6 @@ public abstract class Entity<T> {
     }
 
     /**
-     *
      * @param id
      */
     public void setId(T id) {
@@ -27,7 +24,6 @@ public abstract class Entity<T> {
     }
 
     /**
-     *
      * @return
      */
     public String getName() {
@@ -35,7 +31,6 @@ public abstract class Entity<T> {
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name) {

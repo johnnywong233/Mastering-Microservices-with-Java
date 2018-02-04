@@ -1,9 +1,7 @@
 package com.packtpub.mmj.zuul.server;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -32,8 +30,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+@FeignClient("restaurant-service")
+interface RestaurantClient {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/v1/restaurants")
+    Collection<Restaurant> getRestaurants(@RequestParam("name") String name);
+}
+
 /**
- *
  * @author Sourabh Sharma
  */
 @SpringBootApplication
@@ -44,26 +53,25 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
 public class EdgeApp {
 
+    private static final Logger LOG = LoggerFactory.getLogger(EdgeApp.class);
+    @Value("${app.rabbitmq.host:localhost}")
+    String rabbitMqHost;
+
+    public static void main(String[] args) {
+        SpringApplication.run(EdgeApp.class, args);
+    }
+
     @LoadBalanced
     @Bean
     RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(EdgeApp.class);
-
-    @Value("${app.rabbitmq.host:localhost}")
-    String rabbitMqHost;
-
     @Bean
     public ConnectionFactory connectionFactory() {
         LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
         return connectionFactory;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(EdgeApp.class, args);
     }
 }
 
@@ -95,23 +103,16 @@ class RestTemplateExample implements CommandLineRunner {
         System.out.println("\n\n\n start RestTemplate client...");
         ResponseEntity<Collection<Restaurant>> exchange
                 = this.restTemplate.exchange(
-                        "http://restaurant-service/v1/restaurants?name=o",
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<Collection<Restaurant>>() {
+                "http://restaurant-service/v1/restaurants?name=o",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Collection<Restaurant>>() {
                 },
-                        (Object) "restaurants");
+                (Object) "restaurants");
         exchange.getBody().forEach((Restaurant restaurant) -> {
             System.out.println("\n\n\n[ " + restaurant.getId() + " " + restaurant.getName() + "]");
         });
     }
-}
-
-@FeignClient("restaurant-service")
-interface RestaurantClient {
-
-    @RequestMapping(method = RequestMethod.GET, value = "/v1/restaurants")
-    Collection<Restaurant> getRestaurants(@RequestParam("name") String name);
 }
 
 @Component
@@ -128,7 +129,8 @@ class FeignSample implements CommandLineRunner {
     }
 }
 
-
+@NoArgsConstructor
+@Data
 class Restaurant {
 
     private List<Table> tables = new ArrayList<>();
@@ -136,59 +138,17 @@ class Restaurant {
     private boolean isModified;
     private String name;
 
-    public Restaurant() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public boolean isIsModified() {
-        return isModified;
-    }
-
-    public void setIsModified(boolean isModified) {
-        this.isModified = isModified;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Restaurant(String name, String id, List<Table> tables) {
         this.tables = tables;
     }
-
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
 }
 
+@Data
 class Table {
 
     private int capacity;
 
     public Table(String name, BigInteger id, int capacity) {
         this.capacity = capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getCapacity() {
-        return capacity;
     }
 }

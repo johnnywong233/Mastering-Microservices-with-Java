@@ -1,7 +1,6 @@
 package com.packtpub.mmj.restaurant;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,32 +10,22 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
-/**
- *
- * @author sousharm
- */
 @SpringBootApplication
 @EnableEurekaClient
 @EnableCircuitBreaker
+@Slf4j
 public class RestaurantApp {
-
-    private static final Logger LOG = LoggerFactory.getLogger(RestaurantApp.class);
 
     @Value("${app.rabbitmq.host:localhost}")
     String rabbitMqHost;
 
-    @Bean
-    public ConnectionFactory connectionFactory() {
-        LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
-        return connectionFactory;
-    }
-
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         SpringApplication.run(RestaurantApp.class, args);
+    }
+
+    @Bean
+    public ConnectionFactory connectionFactory() {
+        log.info("Create RabbitMqCF for host: {}", rabbitMqHost);
+        return new CachingConnectionFactory(rabbitMqHost);
     }
 }

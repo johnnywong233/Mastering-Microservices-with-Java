@@ -3,40 +3,36 @@ package com.packtpub.mmj.user.resources;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packtpub.mmj.user.UsersApp;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Spring System test - by using @SpringApplicationConfiguration that picks up
  * same configuration that Spring Boot uses.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = UsersApp.class)
-@WebIntegrationTest
+//@SpringApplicationConfiguration(classes = UsersApp.class)
+@SpringBootTest(classes = UsersApp.class)
+//@WebIntegrationTest
+@SuppressWarnings("unchecked")
 public class UserControllerIntegrationTests {
 
-    private final RestTemplate restTemplate = new TestRestTemplate();
     //Required to Generate JSON content from Java objects
-    public static final ObjectMapper objectMapper = new ObjectMapper();
-
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private final RestTemplate restTemplate = new RestTemplate();
     @Value("${local.server.port}")
     private int port;
 
@@ -113,13 +109,13 @@ public class UserControllerIntegrationTests {
     /**
      * Test the POST /v1/user API
      *
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException exception
      */
     @Test
     public void testAdd() throws JsonProcessingException {
 
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("name", "Testusr 3");
+        requestBody.put("name", "Testusr 3.");
         requestBody.put("id", "3");
         requestBody.put("address", "Address for 3rd User");
         requestBody.put("city", "City");

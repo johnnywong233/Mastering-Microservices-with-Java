@@ -23,14 +23,13 @@ public class UsersApp {
     @Value("${app.rabbitmq.host:localhost}")
     String rabbitMqHost;
 
+    public static void main(String[] args) {
+        SpringApplication.run(UsersApp.class, args);
+    }
+
     @Bean
     public ConnectionFactory connectionFactory() {
         LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
-        return connectionFactory;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(UsersApp.class, args);
+        return new CachingConnectionFactory(rabbitMqHost);
     }
 }

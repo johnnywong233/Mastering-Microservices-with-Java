@@ -1,10 +1,11 @@
 package com.packtpub.mmj.common;
 
-import java.util.Map;
-import java.util.concurrent.Callable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class MDCConcurrentCallable<K> implements Callable {
 
@@ -19,6 +20,10 @@ public class MDCConcurrentCallable<K> implements Callable {
         this.parentMDC = MDC.getCopyOfContextMap();
         LOG.debug("actual --> " + actual);
         LOG.debug("this.parentMDC --> " + this.parentMDC);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Non-Executable");
     }
 
     @Override
@@ -37,9 +42,5 @@ public class MDCConcurrentCallable<K> implements Callable {
                 MDC.setContextMap(childMDC);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Non-Executable");
     }
 }
