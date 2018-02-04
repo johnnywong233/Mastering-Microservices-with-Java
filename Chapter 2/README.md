@@ -1,0 +1,1 @@
+- 找不到 WebIntegrationTest 的替换类，在不启动 main 方法的情况下，直接跑测试用例类，抛错；因为 localhost:8080没有服务啊；启动 main 方法再去跑测试类，没有问题。
