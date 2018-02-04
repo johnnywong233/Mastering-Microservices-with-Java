@@ -9,7 +9,7 @@ spring:
 
 # Map the error path to error template (for Thymeleaf)
 error:
-  path=/error
+  path: /error
 
 # Discovery Server Access
 eureka:

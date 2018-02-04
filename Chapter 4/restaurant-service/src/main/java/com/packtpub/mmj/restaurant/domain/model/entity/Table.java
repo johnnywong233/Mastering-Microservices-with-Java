@@ -1,18 +1,18 @@
 package com.packtpub.mmj.restaurant.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
 import java.math.BigInteger;
 
 /**
- *
  * @author Sourabh Sharma
  */
+@Data
 public class Table extends BaseEntity<BigInteger> {
-
     private int capacity;
 
     /**
-     *
      * @param name
      * @param id
      * @param capacity
@@ -21,33 +21,4 @@ public class Table extends BaseEntity<BigInteger> {
         super(id, name);
         this.capacity = capacity;
     }
-
-    /**
-     *
-     * @param capacity
-     */
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getCapacity() {
-        return capacity;
-    }
-
-    /**
-     * Overridden toString() method that return String presentation of the
-     * Object
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return new StringBuilder("{id: ").append(id).append(", name: ")
-                .append(name).append(", capacity: ").append(capacity).append("}").toString();
-    }
-
 }

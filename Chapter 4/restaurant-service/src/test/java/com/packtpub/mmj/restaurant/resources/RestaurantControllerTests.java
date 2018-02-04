@@ -5,15 +5,14 @@ import com.packtpub.mmj.restaurant.domain.model.entity.Restaurant;
 import com.packtpub.mmj.restaurant.domain.repository.RestaurantRepository;
 import com.packtpub.mmj.restaurant.domain.service.RestaurantService;
 import com.packtpub.mmj.restaurant.domain.service.RestaurantServiceImpl;
-import static com.packtpub.mmj.restaurant.resources.AbstractRestaurantControllerTests.RESTAURANT;
+import org.junit.Before;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.Before;
 
 /**
- *
  * @author Sourabh Sharma
  */
 public class RestaurantControllerTests extends AbstractRestaurantControllerTests {
@@ -23,6 +22,22 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
      */
     protected static final Restaurant restaurantStaticInstance = new Restaurant(RESTAURANT,
             RESTAURANT_NAME, RESTAURANT_ADDRESS, null);
+    /**
+     * Initialized Restaurant Repository
+     */
+    private TestRestaurantRepository testRestaurantRepository = new TestRestaurantRepository();
+    /**
+     * Initialized Restaurant Service
+     */
+    private RestaurantService restaurantService = new RestaurantServiceImpl(testRestaurantRepository);
+
+    /**
+     * Setup method
+     */
+    @Before
+    public void setup() {
+        restaurantController = new RestaurantController(restaurantService);
+    }
 
     /**
      * Test Repository
@@ -43,7 +58,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param name
          * @return
          */
@@ -58,7 +72,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param entity
          */
         @Override
@@ -67,7 +80,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param id
          */
         @Override
@@ -78,7 +90,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param entity
          */
         @Override
@@ -89,7 +100,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param name
          * @return
          * @throws Exception
@@ -107,7 +117,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param id
          * @return
          */
@@ -117,7 +126,6 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @param id
          * @return
          */
@@ -127,30 +135,11 @@ public class RestaurantControllerTests extends AbstractRestaurantControllerTests
         }
 
         /**
-         *
          * @return
          */
         @Override
         public Collection<Restaurant> getAll() {
             return entities.values();
         }
-    }
-
-    /**
-     * Initialized Restaurant Repository
-     */
-    protected TestRestaurantRepository testRestaurantRepository = new TestRestaurantRepository();
-
-    /**
-     * Initialized Restaurant Service
-     */
-    protected RestaurantService restaurantService = new RestaurantServiceImpl(testRestaurantRepository);
-
-    /**
-     * Setup method
-     */
-    @Before
-    public void setup() {
-        restaurantController = new RestaurantController(restaurantService);
     }
 }

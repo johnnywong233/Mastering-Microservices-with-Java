@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Sourabh Sharma
  */
 public class Restaurant extends BaseEntity<String> {
@@ -13,23 +12,6 @@ public class Restaurant extends BaseEntity<String> {
     private String address;
 
     /**
-     *
-     * @return
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     *
-     * @param address
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-     *
      * @param name
      * @param id
      * @param address
@@ -42,19 +24,31 @@ public class Restaurant extends BaseEntity<String> {
     }
 
     /**
-     *
-     * @param tables
+     * @return
      */
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     *
+     * @param address
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
      * @return
      */
     public List<Table> getTables() {
         return tables;
+    }
+
+    /**
+     * @param tables
+     */
+    public void setTables(List<Table> tables) {
+        this.tables = tables;
     }
 
     /**
@@ -67,6 +61,6 @@ public class Restaurant extends BaseEntity<String> {
     public String toString() {
         return new StringBuilder("{id: ").append(id).append(", name: ")
                 .append(name).append(", address: ").append(address).
-                append(", tables: ").append(tables).append("}").toString();
+                        append(", tables: ").append(tables).append("}").toString();
     }
 }

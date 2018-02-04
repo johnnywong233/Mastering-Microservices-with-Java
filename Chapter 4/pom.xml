@@ -23,6 +23,14 @@
         <module>booking-service</module>
         <module>user-service</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <!-- Build step is required to include the spring boot artifacts in generated jars -->
     <build>

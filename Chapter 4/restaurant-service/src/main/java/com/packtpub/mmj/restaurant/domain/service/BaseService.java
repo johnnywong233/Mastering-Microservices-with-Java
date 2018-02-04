@@ -1,13 +1,13 @@
 package com.packtpub.mmj.restaurant.domain.service;
 
 import com.packtpub.mmj.restaurant.domain.repository.Repository;
+
 import java.util.Collection;
 
 /**
- *
- * @author Sourabh Sharma
  * @param <TE>
  * @param <T>
+ * @author Sourabh Sharma
  */
 public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
 
@@ -19,7 +19,6 @@ public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
     }
 
     /**
-     *
      * @param entity
      * @throws Exception
      */
@@ -28,7 +27,6 @@ public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
     }
 
     /**
-     *
      * @return
      */
     public Collection<TE> getAll() {
