@@ -9,9 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Sourabh Sharma
- */
 @Repository("userRepository")
 public class InMemUserRepository implements UserRepository<User, String> {
 

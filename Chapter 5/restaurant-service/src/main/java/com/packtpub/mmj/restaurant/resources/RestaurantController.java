@@ -18,9 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author sousharm
- */
+
 @RestController
 @RequestMapping("/v1/restaurants")
 @SuppressWarnings("unchecked")

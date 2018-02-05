@@ -5,9 +5,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Sourabh Sharma
- */
 @Data
 public class Restaurant extends BaseEntity<String> {
 

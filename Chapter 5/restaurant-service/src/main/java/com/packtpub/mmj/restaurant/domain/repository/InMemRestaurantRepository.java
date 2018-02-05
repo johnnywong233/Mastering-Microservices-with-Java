@@ -9,9 +9,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Sourabh Sharma
- */
 @Repository("restaurantRepository")
 public class InMemRestaurantRepository implements RestaurantRepository<Restaurant, String> {
 
@@ -106,9 +103,7 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
         return entities.get(id);
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public Collection<Restaurant> getAll() {
         return entities.values();

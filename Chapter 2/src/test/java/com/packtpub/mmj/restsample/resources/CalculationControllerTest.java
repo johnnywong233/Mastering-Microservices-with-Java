@@ -13,17 +13,10 @@ import java.util.Map;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
-/**
- * @author sousharm
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 //@SpringApplicationConfiguration(classes = RestSampleApp.class)
 @SpringBootTest(classes = RestSampleApp.class)
 //@WebIntegrationTest
-/**
- *
- * @author Sourabh Sharma
- */
 @SuppressWarnings("unchecked")
 public class CalculationControllerTest {
 

@@ -2,18 +2,15 @@ package com.packtpub.mmj.booking.domain.repository;
 
 import com.packtpub.mmj.booking.domain.model.entity.Booking;
 import com.packtpub.mmj.booking.domain.model.entity.Entity;
+import org.springframework.stereotype.Repository;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Repository("bookingRepository")
 public class InMemBookingRepository implements BookingRepository<Booking, String> {
 
@@ -23,7 +20,7 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
      * Initialize the in-memory Booking Repository with sample Map
      */
     public InMemBookingRepository() {
-        entities = new HashMap();
+        entities = new HashMap<>();
         Booking booking = new Booking("1", "Booking 1", "1", "1", "1", LocalDate.now(), LocalTime.now());
         entities.put("1", booking);
         Booking booking2 = new Booking("2", "Booking 2", "2", "2", "2", LocalDate.now(), LocalTime.now());
@@ -46,19 +43,11 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         return false;
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void add(Booking entity) {
         entities.put(entity.getId(), entity);
     }
 
-    /**
-     *
-     * @param id
-     */
     @Override
     public void remove(String id) {
         if (entities.containsKey(id)) {
@@ -66,10 +55,6 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         }
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void update(Booking entity) {
         if (entities.containsKey(entity.getId())) {
@@ -77,44 +62,24 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         }
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public boolean contains(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Entity get(String id) {
         return entities.get(id);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Collection<Booking> getAll() {
         return entities.values();
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     * @throws Exception
-     */
     @Override
     public Collection<Booking> findByName(String name) throws Exception {
-        Collection<Booking> bookings = new ArrayList();
+        Collection<Booking> bookings = new ArrayList<>();
         int noOfChars = name.length();
         entities.forEach((k, v) -> {
             if (v.getName().toLowerCase().contains(name.toLowerCase().subSequence(0, noOfChars))) {

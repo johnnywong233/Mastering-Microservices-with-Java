@@ -7,10 +7,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Category(DockerIntegrationTest.class)
 public class RestaurantAppDockerIT {
 

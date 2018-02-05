@@ -5,9 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @author sousharm
- */
+
 @Data
 @AllArgsConstructor
 public class Calculation {

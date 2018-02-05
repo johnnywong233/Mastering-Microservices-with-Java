@@ -3,10 +3,6 @@ package com.packtpub.mmj.booking.domain.valueobject;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- *
- * @author Sourabh Sharma
- */
 public class BookingVO {
 
     private String name;
@@ -18,10 +14,6 @@ public class BookingVO {
     private LocalTime time;
     private String tableId;
 
-    /**
-     *
-     * @return
-     */
     public String getTableId() {
         return tableId;
     }
@@ -34,10 +26,6 @@ public class BookingVO {
         this.tableId = tableId;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getRestaurantId() {
         return restaurantId;
     }
@@ -50,10 +38,6 @@ public class BookingVO {
         this.restaurantId = restaurantId;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getUserId() {
         return userId;
     }
@@ -66,10 +50,6 @@ public class BookingVO {
         this.userId = userId;
     }
 
-    /**
-     *
-     * @return
-     */
     public LocalDate getDate() {
         return date;
     }
@@ -82,10 +62,6 @@ public class BookingVO {
         this.date = date;
     }
 
-    /**
-     *
-     * @return
-     */
     public LocalTime getTime() {
         return time;
     }
@@ -138,34 +114,18 @@ public class BookingVO {
                 .append(", date: ").append(date).append(", time: ").append(time).append("}").toString();
     }
 
-    /**
-     *
-     * @return
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     *
-     * @param name
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     */
     public void setId(String id) {
         this.id = id;
     }

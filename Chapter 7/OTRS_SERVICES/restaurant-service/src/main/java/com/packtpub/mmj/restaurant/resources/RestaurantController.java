@@ -5,25 +5,18 @@ import com.packtpub.mmj.restaurant.domain.model.entity.Entity;
 import com.packtpub.mmj.restaurant.domain.model.entity.Restaurant;
 import com.packtpub.mmj.restaurant.domain.service.RestaurantService;
 import com.packtpub.mmj.restaurant.domain.valueobject.RestaurantVO;
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-/**
- *
- * @author sousharm
- */
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 @RestController
 @RequestMapping("/v1/restaurants")
 public class RestaurantController {
@@ -37,18 +30,16 @@ public class RestaurantController {
      * restaurant service
      */
     protected RestaurantService restaurantService;
+    @Autowired
+    DiscoveryClient client;
 
     /**
-     *
      * @param restaurantService
      */
     @Autowired
     public RestaurantController(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
-
-    @Autowired
-    DiscoveryClient client;
 
     /**
      * Fetch all restaurants <code>http://.../restaurants/</code>

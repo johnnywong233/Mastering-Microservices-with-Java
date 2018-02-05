@@ -26,9 +26,7 @@ public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
         _repository.add(entity);
     }
 
-    /**
-     * @return
-     */
+
     public Collection<TE> getAll() {
         return _repository.getAll();
     }

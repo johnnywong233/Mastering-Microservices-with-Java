@@ -21,9 +21,7 @@ public class TurbineApp {
     @Bean
     public ConnectionFactory connectionFactory() {
         //LOG.info("Creating RabbitMQHost ConnectionFactory for host: {}", rabbitMQHost);
-
-        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(rabbitMQHost);
-        return cachingConnectionFactory;
+        return new CachingConnectionFactory(rabbitMQHost);
     }
 
     public static void main(String[] args) {

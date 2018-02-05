@@ -11,10 +11,6 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
-/**
- *
- * @author sousharm
- */
 @SpringBootApplication
 @EnableEurekaClient
 @EnableCircuitBreaker
@@ -25,22 +21,13 @@ public class RestaurantApp {
     @Value("${app.rabbitmq.host:localhost}")
     String rabbitMqHost;
 
-    /**
-     *
-     * @return
-     */
+    public static void main(String[] args) {
+        SpringApplication.run(RestaurantApp.class, args);
+    }
+
     @Bean
     public ConnectionFactory connectionFactory() {
         LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
-        return connectionFactory;
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(RestaurantApp.class, args);
+        return new CachingConnectionFactory(rabbitMqHost);
     }
 }

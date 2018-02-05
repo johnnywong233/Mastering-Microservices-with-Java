@@ -2,8 +2,7 @@ package com.packtpub.mmj.api.service.resources;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.packtpub.mmj.common.ServiceHelper;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-/**
- *
- * @author sousharm
- */
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @RestController
 @RequestMapping("/v1/bookings/")
 public class BookingServiceAPI {
@@ -28,13 +26,11 @@ public class BookingServiceAPI {
 
     @Autowired
     ServiceHelper serviceHelper;
-
+    @Autowired
+    DiscoveryClient client;
     //@Qualifier("userInfoRestTemplate")
     @Autowired
     private RestTemplate restTemplate;
-
-    @Autowired
-    DiscoveryClient client;
 
     /**
      * Add booking with the specified information.
@@ -63,10 +59,11 @@ public class BookingServiceAPI {
      */
     public ResponseEntity<Booking> defaultAddBooking(Booking booking) {
         LOG.warn("Fallback method for booking-service is being used.");
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 }
 
+@Data
 class Booking {
 
     private String name;
@@ -77,115 +74,4 @@ class Booking {
 
     private LocalTime time;
     private String tableId;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getTableId() {
-        return tableId;
-    }
-
-    /**
-     *
-     * @param tableId
-     */
-    public void setTableId(String tableId) {
-        this.tableId = tableId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getRestaurantId() {
-        return restaurantId;
-    }
-
-    /**
-     *
-     * @param restaurantId
-     */
-    public void setRestaurantId(String restaurantId) {
-        this.restaurantId = restaurantId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getUserId() {
-        return userId;
-    }
-
-    /**
-     *
-     * @param userId
-     */
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     *
-     * @param date
-     */
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public LocalTime getTime() {
-        return time;
-    }
-
-    /**
-     *
-     * @param time
-     */
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    /**
-     * Overridden toString() method that return String presentation of the
-     * Object
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return new StringBuilder("{id: ").append(id).append(", name: ")
-                .append(name).append(", userId: ").append(userId)
-                .append(", restaurantId: ").append(restaurantId)
-                .append(", tableId: ").append(tableId)
-                .append(", date: ").append(date).append(", time: ").append(time).append("}").toString();
-    }
 }

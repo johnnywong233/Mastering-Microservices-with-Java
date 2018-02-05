@@ -2,16 +2,13 @@ package com.packtpub.mmj.restaurant.domain.repository;
 
 import com.packtpub.mmj.restaurant.domain.model.entity.Entity;
 import com.packtpub.mmj.restaurant.domain.model.entity.Restaurant;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Repository("restaurantRepository")
 public class InMemRestaurantRepository implements RestaurantRepository<Restaurant, String> {
 
@@ -61,7 +58,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     }
 
     /**
-     *
      * @param entity
      */
     @Override
@@ -70,7 +66,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     }
 
     /**
-     *
      * @param id
      */
     @Override
@@ -81,7 +76,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     }
 
     /**
-     *
      * @param entity
      */
     @Override
@@ -92,7 +86,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     }
 
     /**
-     *
      * @param id
      * @return
      */
@@ -102,7 +95,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     }
 
     /**
-     *
      * @param id
      * @return
      */
@@ -122,7 +114,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     }
 
     /**
-     *
      * @param name
      * @return
      * @throws Exception

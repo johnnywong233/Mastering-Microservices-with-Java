@@ -3,16 +3,13 @@ package com.packtpub.mmj.restaurant.domain.service;
 import com.packtpub.mmj.restaurant.domain.model.entity.Entity;
 import com.packtpub.mmj.restaurant.domain.model.entity.Restaurant;
 import com.packtpub.mmj.restaurant.domain.repository.RestaurantRepository;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+
 @Service("restaurantService")
 public class RestaurantServiceImpl extends BaseService<Restaurant, String>
         implements RestaurantService {
@@ -20,7 +17,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     private RestaurantRepository<Restaurant, String> restaurantRepository;
 
     /**
-     *
      * @param restaurantRepository
      */
     @Autowired
@@ -42,7 +38,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     }
 
     /**
-     *
      * @param name
      * @return
      * @throws Exception
@@ -53,7 +48,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     }
 
     /**
-     *
      * @param restaurant
      * @throws Exception
      */
@@ -63,7 +57,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     }
 
     /**
-     *
      * @param id
      * @throws Exception
      */
@@ -73,7 +66,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     }
 
     /**
-     *
      * @param restaurantId
      * @return
      * @throws Exception
@@ -84,7 +76,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     }
 
     /**
-     *
      * @param name
      * @return
      * @throws Exception
@@ -95,7 +86,6 @@ public class RestaurantServiceImpl extends BaseService<Restaurant, String>
     }
 
     /**
-     *
      * @return @throws Exception
      */
     @Override

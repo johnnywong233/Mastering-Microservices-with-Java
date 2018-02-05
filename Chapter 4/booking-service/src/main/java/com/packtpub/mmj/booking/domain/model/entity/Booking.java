@@ -3,9 +3,6 @@ package com.packtpub.mmj.booking.domain.model.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * @author Sourabh Sharma
- */
 public class Booking extends BaseEntity<String> {
 
     private String restaurantId;
@@ -31,9 +28,7 @@ public class Booking extends BaseEntity<String> {
         this.time = time;
     }
 
-    /**
-     * @return
-     */
+
     public String getTableId() {
         return tableId;
     }
@@ -45,9 +40,7 @@ public class Booking extends BaseEntity<String> {
         this.tableId = tableId;
     }
 
-    /**
-     * @return
-     */
+
     public String getRestaurantId() {
         return restaurantId;
     }
@@ -59,9 +52,7 @@ public class Booking extends BaseEntity<String> {
         this.restaurantId = restaurantId;
     }
 
-    /**
-     * @return
-     */
+
     public String getUserId() {
         return userId;
     }
@@ -73,9 +64,7 @@ public class Booking extends BaseEntity<String> {
         this.userId = userId;
     }
 
-    /**
-     * @return
-     */
+
     public LocalDate getDate() {
         return date;
     }
@@ -87,9 +76,7 @@ public class Booking extends BaseEntity<String> {
         this.date = date;
     }
 
-    /**
-     * @return
-     */
+
     public LocalTime getTime() {
         return time;
     }

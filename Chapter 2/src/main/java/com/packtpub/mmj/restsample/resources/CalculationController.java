@@ -11,9 +11,7 @@ import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-/**
- * @author sousharm
- */
+
 @RestController
 @RequestMapping("/calculation")
 public class CalculationController {

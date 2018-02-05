@@ -3,9 +3,6 @@ package com.packtpub.mmj.mcrsrvc.domain.model;
 import java.math.BigInteger;
 import java.util.Collection;
 
-/**
- * @author Sourabh Sharma
- */
 public class RestaurantService extends BaseService<Restaurant, BigInteger> {
 
     private RestaurantRepository<Restaurant, String> restaurantRepository;
@@ -34,9 +31,7 @@ public class RestaurantService extends BaseService<Restaurant, BigInteger> {
         super.add(restaurant);
     }
 
-    /**
-     * @return
-     */
+
     @Override
     public Collection<Restaurant> getAll() {
         return super.getAll();

@@ -2,16 +2,13 @@ package com.packtpub.mmj.user.domain.repository;
 
 import com.packtpub.mmj.user.domain.model.entity.Entity;
 import com.packtpub.mmj.user.domain.model.entity.User;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Repository("userRepository")
 public class InMemUserRepository implements UserRepository<User, String> {
 
@@ -45,7 +42,6 @@ public class InMemUserRepository implements UserRepository<User, String> {
     }
 
     /**
-     *
      * @param entity
      */
     @Override
@@ -54,7 +50,6 @@ public class InMemUserRepository implements UserRepository<User, String> {
     }
 
     /**
-     *
      * @param id
      */
     @Override
@@ -65,7 +60,6 @@ public class InMemUserRepository implements UserRepository<User, String> {
     }
 
     /**
-     *
      * @param entity
      */
     @Override
@@ -76,7 +70,6 @@ public class InMemUserRepository implements UserRepository<User, String> {
     }
 
     /**
-     *
      * @param id
      * @return
      */
@@ -86,7 +79,6 @@ public class InMemUserRepository implements UserRepository<User, String> {
     }
 
     /**
-     *
      * @param id
      * @return
      */
@@ -95,17 +87,13 @@ public class InMemUserRepository implements UserRepository<User, String> {
         return entities.get(id);
     }
 
-    /**
-     *
-     * @return
-     */
+
     @Override
     public Collection<User> getAll() {
         return entities.values();
     }
 
     /**
-     *
      * @param name
      * @return
      * @throws Exception

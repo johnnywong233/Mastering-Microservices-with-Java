@@ -42,9 +42,6 @@ interface RestaurantClient {
     Collection<Restaurant> getRestaurants(@RequestParam("name") String name);
 }
 
-/**
- * @author Sourabh Sharma
- */
 @SpringBootApplication
 @EnableZuulProxy
 @EnableEurekaClient

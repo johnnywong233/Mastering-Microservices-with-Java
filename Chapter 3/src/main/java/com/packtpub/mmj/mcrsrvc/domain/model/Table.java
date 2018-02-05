@@ -2,9 +2,6 @@ package com.packtpub.mmj.mcrsrvc.domain.model;
 
 import java.math.BigInteger;
 
-/**
- * @author Sourabh Sharma
- */
 public class Table extends BaseEntity<BigInteger> {
 
     private int capacity;
@@ -19,9 +16,7 @@ public class Table extends BaseEntity<BigInteger> {
         this.capacity = capacity;
     }
 
-    /**
-     * @return
-     */
+
     public int getCapacity() {
         return capacity;
     }

@@ -1,14 +1,10 @@
 package com.packtpub.mmj.zuul.server;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,10 +31,18 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import javax.annotation.Resource;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+@FeignClient("restaurant-service")
+interface RestaurantClient {
+    @RequestMapping(method = RequestMethod.GET, value = "/v1/restaurants")
+    Collection<Restaurant> getRestaurants(@RequestParam("name") String name);
+}
+
 @SpringBootApplication
 @EnableZuulProxy
 @EnableEurekaClient
@@ -47,32 +51,26 @@ import org.springframework.web.filter.CorsFilter;
 @EnableFeignClients
 public class EdgeApp {
 
+    private static final Logger LOG = LoggerFactory.getLogger(EdgeApp.class);
+    @Value("${app.rabbitmq.host:localhost}")
+    String rabbitMqHost;
+
+    public static void main(String[] args) {
+        SpringApplication.run(EdgeApp.class, args);
+    }
+
     @LoadBalanced
     @Bean
     RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
-    private static final Logger LOG = LoggerFactory.getLogger(EdgeApp.class);
-
-    @Value("${app.rabbitmq.host:localhost}")
-    String rabbitMqHost;
-
-    /**
-     *
-     * @return
-     */
     @Bean
     public ConnectionFactory connectionFactory() {
         LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
-        return connectionFactory;
+        return new CachingConnectionFactory(rabbitMqHost);
     }
 
-    /**
-     *
-     * @return
-     */
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -90,20 +88,12 @@ public class EdgeApp {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(EdgeApp.class, args);
-    }
 }
 
 @Component
 class DiscoveryClientSample implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     private DiscoveryClient discoveryClient;
 
     @Override
@@ -120,7 +110,7 @@ class DiscoveryClientSample implements CommandLineRunner {
 @Component
 class RestTemplateExample implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     private RestTemplate restTemplate;
 
     @Override
@@ -128,29 +118,22 @@ class RestTemplateExample implements CommandLineRunner {
         System.out.println("\n\n\n start RestTemplate client...");
         ResponseEntity<Collection<Restaurant>> exchange
                 = this.restTemplate.exchange(
-                        "http://restaurant-service/v1/restaurants?name=o",
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<Collection<Restaurant>>() {
+                "http://restaurant-service/v1/restaurants?name=o",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Collection<Restaurant>>() {
                 },
-                        (Object) "restaurants");
+                (Object) "restaurants");
         exchange.getBody().forEach((Restaurant restaurant) -> {
             System.out.println("\n\n\n[ " + restaurant.getId() + " " + restaurant.getName() + "]");
         });
     }
 }
 
-@FeignClient("restaurant-service")
-interface RestaurantClient {
-
-    @RequestMapping(method = RequestMethod.GET, value = "/v1/restaurants")
-    Collection<Restaurant> getRestaurants(@RequestParam("name") String name);
-}
-
 @Component
 class FeignSample implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     private RestaurantClient restaurantClient;
 
     @Override
@@ -161,66 +144,24 @@ class FeignSample implements CommandLineRunner {
     }
 }
 
+@Data
 class Restaurant {
-
     private List<Table> tables = new ArrayList<>();
     private String id;
     private boolean isModified;
     private String name;
 
-    public Restaurant() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public boolean isIsModified() {
-        return isModified;
-    }
-
-    public void setIsModified(boolean isModified) {
-        this.isModified = isModified;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Restaurant(String name, String id, List<Table> tables) {
         this.tables = tables;
     }
-
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
 }
 
+@Data
 class Table {
 
     private int capacity;
 
     public Table(String name, BigInteger id, int capacity) {
         this.capacity = capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getCapacity() {
-        return capacity;
     }
 }

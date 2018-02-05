@@ -3,18 +3,16 @@ package com.packtpub.mmj.restaurant.resources;
 import com.packtpub.mmj.restaurant.domain.model.entity.Entity;
 import com.packtpub.mmj.restaurant.domain.model.entity.Restaurant;
 import com.packtpub.mmj.restaurant.domain.valueobject.RestaurantVO;
-import java.util.Collection;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-/**
- *
- * @author sousharm
- */
+import java.util.Collection;
+import java.util.logging.Logger;
+
+
 public abstract class AbstractRestaurantControllerTests {
 
     /**

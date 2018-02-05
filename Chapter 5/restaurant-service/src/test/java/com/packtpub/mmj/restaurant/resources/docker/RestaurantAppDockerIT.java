@@ -9,9 +9,6 @@ import java.net.URL;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author Sourabh Sharma
- */
 @Category(DockerIntegrationTest.class)
 public class RestaurantAppDockerIT {
 

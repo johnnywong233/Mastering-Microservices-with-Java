@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Collection;
 import java.util.logging.Logger;
 
-/**
- * @author sousharm
- */
+
 public abstract class AbstractRestaurantControllerTests {
 
     /**

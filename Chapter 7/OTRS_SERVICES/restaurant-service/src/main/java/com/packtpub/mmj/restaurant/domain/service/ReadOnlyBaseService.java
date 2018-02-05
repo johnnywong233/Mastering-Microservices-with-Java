@@ -3,10 +3,9 @@ package com.packtpub.mmj.restaurant.domain.service;
 import com.packtpub.mmj.restaurant.domain.repository.Repository;
 
 /**
- *
- * @author Sourabh Sharma
  * @param <TE>
  * @param <T>
+ * @author Sourabh Sharma
  */
 public abstract class ReadOnlyBaseService<TE, T> {
 

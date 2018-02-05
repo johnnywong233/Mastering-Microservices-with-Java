@@ -8,10 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Repository("userRepository")
 public class InMemUserRepository implements UserRepository<User, String> {
 
@@ -44,19 +40,11 @@ public class InMemUserRepository implements UserRepository<User, String> {
         return false;
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void add(User entity) {
         entities.put(entity.getId(), entity);
     }
 
-    /**
-     *
-     * @param id
-     */
     @Override
     public void remove(String id) {
         if (entities.containsKey(id)) {
@@ -64,10 +52,6 @@ public class InMemUserRepository implements UserRepository<User, String> {
         }
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void update(User entity) {
         if (entities.containsKey(entity.getId())) {
@@ -75,41 +59,21 @@ public class InMemUserRepository implements UserRepository<User, String> {
         }
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public boolean contains(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Entity get(String id) {
         return entities.get(id);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Collection<User> getAll() {
         return entities.values();
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     * @throws Exception
-     */
     @Override
     public Collection<User> findByName(String name) throws Exception {
         Collection<User> users = new ArrayList();

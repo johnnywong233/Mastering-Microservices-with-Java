@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author sousharm
- */
+
 public class RestaurantApp {
 
     /**

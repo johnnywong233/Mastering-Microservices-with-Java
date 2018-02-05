@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Sourabh Sharma
- */
 @Data
 @NoArgsConstructor
 public class RestaurantVO {

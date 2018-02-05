@@ -1,9 +1,5 @@
 package com.packtpub.mmj.user.domain.model.entity;
 
-/**
- *
- * @author Sourabh Sharma
- */
 public class User extends BaseEntity<String> {
 
     private String address;
@@ -25,10 +21,6 @@ public class User extends BaseEntity<String> {
         this.phoneNo = phoneNo;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getAddress() {
         return address;
     }
@@ -41,10 +33,6 @@ public class User extends BaseEntity<String> {
         this.address = address;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getCity() {
         return city;
     }
@@ -57,10 +45,6 @@ public class User extends BaseEntity<String> {
         this.city = city;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getPhoneNo() {
         return phoneNo;
     }

@@ -10,10 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Component
 public class ServiceHelper {
 

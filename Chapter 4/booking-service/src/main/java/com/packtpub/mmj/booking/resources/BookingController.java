@@ -14,9 +14,6 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author Sourabh Sharma
- */
 @RestController
 @RequestMapping("/v1/booking")
 public class BookingController {

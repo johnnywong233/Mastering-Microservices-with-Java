@@ -51,10 +51,6 @@ public class RestaurantController {
     @Autowired
     DiscoveryClient client;
 
-    /**
-     *
-     * @return
-     */
     @RequestMapping("/")
     public List<String> home() {
         return client.getServices();

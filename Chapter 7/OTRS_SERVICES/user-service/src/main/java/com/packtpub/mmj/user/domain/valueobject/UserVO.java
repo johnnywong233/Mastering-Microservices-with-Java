@@ -1,9 +1,5 @@
 package com.packtpub.mmj.user.domain.valueobject;
 
-/**
- *
- * @author Sourabh Sharma
- */
 public class UserVO {
 
     private String name;
@@ -30,47 +26,41 @@ public class UserVO {
     }
 
     /**
-     *
-     * @return
+     * Default Constructor
      */
+    public UserVO() {
+    }
+
+
     public String getAddress() {
         return address;
     }
 
     /**
-     *
      * @param address
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getCity() {
         return city;
     }
 
     /**
-     *
      * @param city
      */
     public void setCity(String city) {
         this.city = city;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getPhoneNo() {
         return phoneNo;
     }
 
     /**
-     *
      * @param phoneNo
      */
     public void setPhoneNo(String phoneNo) {
@@ -91,38 +81,24 @@ public class UserVO {
                 .append(", phoneNo: ").append(phoneNo).append("}").toString();
     }
 
-    /**
-     * Default Constructor
-     */
-    public UserVO() {
-    }
 
-    /**
-     *
-     * @return
-     */
     public String getName() {
         return name;
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public String getId() {
         return id;
     }
 
     /**
-     *
      * @param id
      */
     public void setId(String id) {

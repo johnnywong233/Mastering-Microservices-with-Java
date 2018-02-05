@@ -1,14 +1,11 @@
 package com.packtpub.mmj.zuul.server;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,10 +30,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import javax.annotation.Resource;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 @SpringBootApplication
 @EnableZuulProxy
 @EnableEurekaClient
@@ -60,8 +59,7 @@ public class EdgeApp {
     @Bean
     public ConnectionFactory connectionFactory() {
         LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
-        return connectionFactory;
+        return new CachingConnectionFactory(rabbitMqHost);
     }
 
     public static void main(String[] args) {
@@ -72,7 +70,7 @@ public class EdgeApp {
 @Component
 class DiscoveryClientSample implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     private DiscoveryClient discoveryClient;
 
     @Override
@@ -89,7 +87,7 @@ class DiscoveryClientSample implements CommandLineRunner {
 @Component
 class RestTemplateExample implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     private RestTemplate restTemplate;
 
     @Override
@@ -97,12 +95,12 @@ class RestTemplateExample implements CommandLineRunner {
         System.out.println("\n\n\n start RestTemplate client...");
         ResponseEntity<Collection<Restaurant>> exchange
                 = this.restTemplate.exchange(
-                        "http://restaurant-service/v1/restaurants?name=o",
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<Collection<Restaurant>>() {
+                "http://restaurant-service/v1/restaurants?name=o",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Collection<Restaurant>>() {
                 },
-                        (Object) "restaurants");
+                (Object) "restaurants");
         exchange.getBody().forEach((Restaurant restaurant) -> {
             System.out.println("\n\n\n[ " + restaurant.getId() + " " + restaurant.getName() + "]");
         });
@@ -119,7 +117,7 @@ interface RestaurantClient {
 @Component
 class FeignSample implements CommandLineRunner {
 
-    @Autowired
+    @Resource
     private RestaurantClient restaurantClient;
 
     @Override
@@ -130,6 +128,8 @@ class FeignSample implements CommandLineRunner {
     }
 }
 
+@Data
+@NoArgsConstructor
 class Restaurant {
 
     private List<Table> tables = new ArrayList<>();
@@ -137,59 +137,16 @@ class Restaurant {
     private boolean isModified;
     private String name;
 
-    public Restaurant() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public boolean isIsModified() {
-        return isModified;
-    }
-
-    public void setIsModified(boolean isModified) {
-        this.isModified = isModified;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Restaurant(String name, String id, List<Table> tables) {
         this.tables = tables;
     }
-
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
 }
 
+@Data
 class Table {
-
     private int capacity;
 
     public Table(String name, BigInteger id, int capacity) {
         this.capacity = capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getCapacity() {
-        return capacity;
     }
 }

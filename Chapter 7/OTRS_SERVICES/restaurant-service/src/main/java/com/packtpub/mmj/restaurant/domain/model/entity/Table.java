@@ -1,18 +1,14 @@
 package com.packtpub.mmj.restaurant.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigInteger;
 
-/**
- *
- * @author Sourabh Sharma
- */
 public class Table extends BaseEntity<BigInteger> {
 
     private int capacity;
 
     /**
-     *
      * @param name
      * @param id
      * @param capacity
@@ -22,20 +18,16 @@ public class Table extends BaseEntity<BigInteger> {
         this.capacity = capacity;
     }
 
+
+    public int getCapacity() {
+        return capacity;
+    }
+
     /**
-     *
      * @param capacity
      */
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getCapacity() {
-        return capacity;
     }
 
     /**

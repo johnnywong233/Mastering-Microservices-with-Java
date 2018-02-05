@@ -5,9 +5,6 @@ import lombok.Data;
 
 import java.math.BigInteger;
 
-/**
- * @author Sourabh Sharma
- */
 @Data
 public class Table extends BaseEntity<BigInteger> {
     private int capacity;

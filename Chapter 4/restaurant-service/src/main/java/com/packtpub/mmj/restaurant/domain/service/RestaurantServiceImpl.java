@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-/**
- * @author Sourabh Sharma
- */
 @Service("restaurantService")
 public class RestaurantServiceImpl extends BaseService<Restaurant, String>
         implements RestaurantService {

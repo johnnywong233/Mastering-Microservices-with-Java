@@ -4,30 +4,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packtpub.mmj.restaurant.RestaurantApp;
 import com.packtpub.mmj.restaurant.domain.model.entity.Table;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
+
+import java.math.BigInteger;
+import java.util.*;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Spring System test - by using @SpringApplicationConfiguration that picks up
@@ -39,14 +32,12 @@ import org.springframework.web.client.RestTemplate;
 public class RestaurantControllerIntegrationTests extends
         AbstractRestaurantControllerTests {
 
-    private final RestTemplate restTemplate = new TestRestTemplate();
-    //Required to Generate JSON content from Java objects
-
     /**
      *
      */
     public static final ObjectMapper objectMapper = new ObjectMapper();
-
+    //Required to Generate JSON content from Java objects
+    private final RestTemplate restTemplate = new TestRestTemplate();
     @Value("${local.server.port}")
     int port;
 

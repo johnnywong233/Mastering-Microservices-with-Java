@@ -2,6 +2,8 @@ package com.packtpub.mmj.booking.domain.repository;
 
 import com.packtpub.mmj.booking.domain.model.entity.Booking;
 import com.packtpub.mmj.booking.domain.model.entity.Entity;
+import org.springframework.stereotype.Repository;
+
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,17 +11,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Repository("bookingRepository")
 public class InMemBookingRepository implements BookingRepository<Booking, String> {
 
-    private Map<String, Booking> entities;
     private static BigInteger index = BigInteger.ZERO;
+    private Map<String, Booking> entities;
 
     /**
      * Initialize the in-memory Booking Repository with sample Map
@@ -37,7 +34,6 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
     /**
      * Check if given booking name already exist.
      *
-     * @param name
      * @return true if already exist, else false
      */
     @Override
@@ -50,11 +46,6 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         return false;
     }
 
-    /**
-     *
-     * @param entity
-     * @return
-     */
     @Override
     public Booking add(Booking entity) {
         index = index.add(BigInteger.ONE);
@@ -64,10 +55,6 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         return entity;
     }
 
-    /**
-     *
-     * @param id
-     */
     @Override
     public void remove(String id) {
         if (entities.containsKey(id)) {
@@ -75,10 +62,6 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         }
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void update(Booking entity) {
         if (entities.containsKey(entity.getId())) {
@@ -86,41 +69,21 @@ public class InMemBookingRepository implements BookingRepository<Booking, String
         }
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public boolean contains(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Entity get(String id) {
         return entities.get(id);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Collection<Booking> getAll() {
         return entities.values();
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     * @throws Exception
-     */
     @Override
     public Collection<Booking> findByName(String name) throws Exception {
         Collection<Booking> bookings = new ArrayList();

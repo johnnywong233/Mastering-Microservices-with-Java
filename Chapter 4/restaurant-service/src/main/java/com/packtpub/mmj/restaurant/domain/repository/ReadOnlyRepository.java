@@ -25,8 +25,6 @@ public interface ReadOnlyRepository<TE, T> {
      */
     Entity get(T id);
 
-    /**
-     * @return
-     */
+
     Collection<TE> getAll();
 }

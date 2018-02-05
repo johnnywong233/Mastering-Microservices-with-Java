@@ -2,16 +2,13 @@ package com.packtpub.mmj.restaurant.domain.repository;
 
 import com.packtpub.mmj.restaurant.domain.model.entity.Entity;
 import com.packtpub.mmj.restaurant.domain.model.entity.Restaurant;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author Sourabh Sharma
- */
 @Repository("restaurantRepository")
 public class InMemRestaurantRepository implements RestaurantRepository<Restaurant, String> {
 
@@ -21,7 +18,7 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
      * Initialize the in-memory Restaurant Repository with empty Map
      */
     public InMemRestaurantRepository() {
-        entities = new HashMap();
+        entities = new HashMap<>();
         Restaurant restaurant = new Restaurant("Le Meurice", "1", "228 rue de Rivoli, 75001, Paris", null);
         entities.put("1", restaurant);
         restaurant = new Restaurant("L'Ambroisie", "2", "9 place des Vosges, 75004, Paris", null);
@@ -47,7 +44,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
     /**
      * Check if given restaurant name already exist.
      *
-     * @param name
      * @return true if already exist, else false
      */
     @Override
@@ -60,19 +56,11 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
         return false;
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void add(Restaurant entity) {
         entities.put(entity.getId(), entity);
     }
 
-    /**
-     *
-     * @param id
-     */
     @Override
     public void remove(String id) {
         if (entities.containsKey(id)) {
@@ -80,10 +68,6 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
         }
     }
 
-    /**
-     *
-     * @param entity
-     */
     @Override
     public void update(Restaurant entity) {
         if (entities.containsKey(entity.getId())) {
@@ -91,44 +75,24 @@ public class InMemRestaurantRepository implements RestaurantRepository<Restauran
         }
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public boolean contains(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Entity get(String id) {
         return entities.get(id);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Collection<Restaurant> getAll() {
         return entities.values();
     }
 
-    /**
-     *
-     * @param name
-     * @return
-     * @throws Exception
-     */
     @Override
     public Collection<Restaurant> findByName(String name) throws Exception {
-        Collection<Restaurant> restaurants = new ArrayList();
+        Collection<Restaurant> restaurants = new ArrayList<>();
         int noOfChars = name.length();
         entities.forEach((k, v) -> {
             if (v.getName().toLowerCase().contains(name.toLowerCase().subSequence(0, noOfChars))) {

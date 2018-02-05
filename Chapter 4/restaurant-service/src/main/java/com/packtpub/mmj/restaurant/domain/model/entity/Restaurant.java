@@ -3,9 +3,6 @@ package com.packtpub.mmj.restaurant.domain.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Sourabh Sharma
- */
 public class Restaurant extends BaseEntity<String> {
 
     private List<Table> tables = new ArrayList<>();
@@ -23,9 +20,7 @@ public class Restaurant extends BaseEntity<String> {
         this.tables = tables;
     }
 
-    /**
-     * @return
-     */
+
     public String getAddress() {
         return address;
     }
@@ -37,9 +32,7 @@ public class Restaurant extends BaseEntity<String> {
         this.address = address;
     }
 
-    /**
-     * @return
-     */
+
     public List<Table> getTables() {
         return tables;
     }

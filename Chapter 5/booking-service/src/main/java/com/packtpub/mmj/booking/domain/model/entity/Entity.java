@@ -1,17 +1,12 @@
 package com.packtpub.mmj.booking.domain.model.entity;
 
-/**
- * @param <T>
- * @author Sourabh Sharma
- */
+
 public abstract class Entity<T> {
 
     T id;
     String name;
 
-    /**
-     * @return
-     */
+
     public T getId() {
         return id;
     }
@@ -23,9 +18,7 @@ public abstract class Entity<T> {
         this.id = id;
     }
 
-    /**
-     * @return
-     */
+
     public String getName() {
         return name;
     }

@@ -1,6 +1,5 @@
 package com.packtpub.mmj.common;
 
-import java.net.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import java.net.URI;
+
 @Component
 public class ServiceHelper {
 
@@ -23,7 +20,6 @@ public class ServiceHelper {
     private LoadBalancerClient loadBalancer;
 
     /**
-     *
      * @param serviceId
      * @return
      */
@@ -32,7 +28,6 @@ public class ServiceHelper {
     }
 
     /**
-     *
      * @param serviceId
      * @param fallbackUri
      * @return

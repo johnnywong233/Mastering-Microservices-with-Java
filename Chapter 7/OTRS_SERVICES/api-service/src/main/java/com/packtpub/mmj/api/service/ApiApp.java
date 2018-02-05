@@ -2,7 +2,6 @@ package com.packtpub.mmj.api.service;
 
 import com.netflix.hystrix.strategy.HystrixPlugins;
 import com.packtpub.mmj.common.MDCHystrixConcurrencyStrategy;
-import javax.net.ssl.HttpsURLConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -18,10 +17,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-/**
- *
- * @author sousharm
- */
+import javax.net.ssl.HttpsURLConnection;
+
 @SpringBootApplication
 @EnableEurekaClient
 @EnableCircuitBreaker
@@ -40,30 +37,21 @@ public class ApiApp {
     @Value("${app.rabbitmq.host:localhost}")
     String rabbitMqHost;
 
-    /**
-     *
-     * @return
-     */
+    public static void main(String[] args) {
+        LOG.info("Register MDCHystrixConcurrencyStrategy");
+        HystrixPlugins.getInstance().registerConcurrencyStrategy(new MDCHystrixConcurrencyStrategy());
+        SpringApplication.run(ApiApp.class, args);
+    }
+
     @Bean
     public ConnectionFactory connectionFactory() {
         LOG.info("Create RabbitMqCF for host: {}", rabbitMqHost);
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitMqHost);
-        return connectionFactory;
+        return new CachingConnectionFactory(rabbitMqHost);
     }
 
     @LoadBalanced
     @Bean
     RestTemplate restTemplate() {
         return new RestTemplate();
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        LOG.info("Register MDCHystrixConcurrencyStrategy");
-        HystrixPlugins.getInstance().registerConcurrencyStrategy(new MDCHystrixConcurrencyStrategy());
-        SpringApplication.run(ApiApp.class, args);
     }
 }

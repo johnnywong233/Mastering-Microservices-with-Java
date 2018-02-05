@@ -3,16 +3,13 @@ package com.packtpub.mmj.user.domain.service;
 import com.packtpub.mmj.user.domain.model.entity.Entity;
 import com.packtpub.mmj.user.domain.model.entity.User;
 import com.packtpub.mmj.user.domain.repository.UserRepository;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Sourabh Sharma
- */
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+
 @Service("userService")
 public class UserServiceImpl extends BaseService<User, String>
         implements UserService {
@@ -20,7 +17,6 @@ public class UserServiceImpl extends BaseService<User, String>
     private UserRepository<User, String> userRepository;
 
     /**
-     *
      * @param userRepository
      */
     @Autowired
@@ -42,7 +38,6 @@ public class UserServiceImpl extends BaseService<User, String>
     }
 
     /**
-     *
      * @param name
      * @return
      * @throws Exception
@@ -53,7 +48,6 @@ public class UserServiceImpl extends BaseService<User, String>
     }
 
     /**
-     *
      * @param user
      * @throws Exception
      */
@@ -63,7 +57,6 @@ public class UserServiceImpl extends BaseService<User, String>
     }
 
     /**
-     *
      * @param id
      * @throws Exception
      */
@@ -73,7 +66,6 @@ public class UserServiceImpl extends BaseService<User, String>
     }
 
     /**
-     *
      * @param restaurantId
      * @return
      * @throws Exception
@@ -84,7 +76,6 @@ public class UserServiceImpl extends BaseService<User, String>
     }
 
     /**
-     *
      * @param name
      * @return
      * @throws Exception

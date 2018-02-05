@@ -77,7 +77,8 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.19</version>
                 <configuration>
-                    <phase>integration-test</phase>
+                    <!--<phase>integration-test</phase>-->
+                    <goal>integration-test</goal>
                     <groups>com.packtpub.mmj.restaurant.resources.docker.DockerIntegrationTest</groups>
                     <systemPropertyVariables>
                         <service.url>http://${docker.host.address}:${docker.port}/</service.url>
@@ -109,10 +110,6 @@
             <groupId>com.packtpub.mmj</groupId>
             <artifactId>online-table-reservation-common</artifactId>
             <version>PACKT-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

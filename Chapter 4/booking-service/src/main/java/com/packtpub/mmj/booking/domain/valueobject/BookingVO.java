@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * @author Sourabh Sharma
- */
 @Data
 @NoArgsConstructor
 public class BookingVO {

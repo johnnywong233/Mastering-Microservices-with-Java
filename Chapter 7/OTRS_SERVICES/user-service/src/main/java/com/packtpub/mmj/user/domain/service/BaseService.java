@@ -1,13 +1,13 @@
 package com.packtpub.mmj.user.domain.service;
 
 import com.packtpub.mmj.user.domain.repository.Repository;
+
 import java.util.Collection;
 
 /**
- *
- * @author Sourabh Sharma
  * @param <TE>
  * @param <T>
+ * @author Sourabh Sharma
  */
 public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
 
@@ -19,7 +19,6 @@ public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
     }
 
     /**
-     *
      * @param entity
      * @throws Exception
      */
@@ -27,10 +26,7 @@ public abstract class BaseService<TE, T> extends ReadOnlyBaseService<TE, T> {
         _repository.add(entity);
     }
 
-    /**
-     *
-     * @return
-     */
+
     public Collection<TE> getAll() {
         return _repository.getAll();
     }
